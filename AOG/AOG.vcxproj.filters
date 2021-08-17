@@ -35,8 +35,10 @@
     <Library Include="vendor\libs\glfw3.lib" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\shaders\fragmentShader.glsl" />
-    <None Include="assets\shaders\vertexShader.glsl" />
+    <None Include="assets\shaders\lightingVShader.glsl" />
+    <None Include="assets\shaders\lightingFShader.glsl" />
+    <None Include="assets\shaders\lightCubeVShader.glsl" />
+    <None Include="assets\shaders\lightCubeFShader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -57,6 +59,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\textures\awesomeface.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\wood.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -165,8 +165,10 @@
     <Library Include="vendor\libs\glfw3.lib" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\shaders\fragmentShader.glsl" />
-    <None Include="assets\shaders\vertexShader.glsl" />
+    <None Include="assets\shaders\lightCubeFShader.glsl" />
+    <None Include="assets\shaders\lightCubeVShader.glsl" />
+    <None Include="assets\shaders\lightingFShader.glsl" />
+    <None Include="assets\shaders\lightingVShader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Camera.h" />
@@ -177,6 +179,7 @@
   <ItemGroup>
     <Image Include="assets\textures\awesomeface.png" />
     <Image Include="assets\textures\container.jpg" />
+    <Image Include="assets\textures\wood.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
