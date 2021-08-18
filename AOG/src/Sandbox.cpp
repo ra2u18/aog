@@ -200,17 +200,31 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// change the light's position values over time (can be done anywhere in the render loop actually, but try to do it at least before using the light source positions)
-		lightPos.x = sin(glfwGetTime()) * 4.0f;
-		lightPos.y = -.15f;
-		lightPos.z = cos(glfwGetTime()) * 4.5f;
 
 		// Activate the shader
 		lightingShader.use();
 
-		lightingShader.setVec3f("objectColor", 1.0f, 0.5f, 0.31f);
-		lightingShader.setVec3f("lightColor", 1.0f, 1.0f, 1.0f);
-		lightingShader.setVec3f("lightPos", lightPos.x, lightPos.y, lightPos.z);
+		lightingShader.setVec3f("light.position", lightPos);
 		lightingShader.setVec3f("viewPos", camera.GetPosition());
+
+		// Lighting settings
+		glm::vec3 lightColor;
+		lightColor.x = sin(glfwGetTime() * 2.0f);
+		lightColor.y = sin(glfwGetTime() * 0.7f);
+		lightColor.z = sin(glfwGetTime() * 1.3f);
+
+		glm::vec3 diffuseColor = lightColor * glm::vec3(0.7f);		// decrease the influence
+		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);	// low influence
+
+		lightingShader.setVec3f("light.ambient", ambientColor);
+		lightingShader.setVec3f("light.diffuse", diffuseColor);
+		lightingShader.setVec3f("light.specular", glm::vec3(1.0f));
+
+		// Material Properties
+		lightingShader.setVec3f("material.ambient", 1.0f, 0.5f, 0.31f);
+		lightingShader.setVec3f("material.diffuse", 1.0f, 0.5f, 0.31f);
+		lightingShader.setVec3f("material.specular", 0.5f, 0.5f, 0.5f);
+		lightingShader.setFloat("material.shininess", 32.0f);
 
 		// Set projection
 		glm::mat4 projection = glm::perspective(glm::radians(camera.GetZoom()), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -222,10 +236,6 @@ int main()
 
 		// world transformation
 		glm::mat4 model = glm::mat4(1.0f);
-		float rotationAngleX = glfwGetTime() * 100;
-		model = glm::rotate(model, glm::radians(rotationAngleX), glm::vec3(1.0f, 0.0f, 0.0f));
-		float rotationAngleZ = glfwGetTime() * 100 / 2.0f;
-		model = glm::rotate(model, glm::radians(rotationAngleZ), glm::vec3(0.0f, 0.0f, 1.0f));
 		lightingShader.setMat4f("model", model);
 
 		// Render the cube
@@ -289,6 +299,12 @@ void processInput(GLFWwindow* window)
 
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(CameraMovement::RIGHT, deltaTime);
+
+	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+		camera.ProcessKeyboard(CameraMovement::UP, deltaTime);
+
+	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+		camera.ProcessKeyboard(CameraMovement::DOWN, deltaTime);
 }
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {

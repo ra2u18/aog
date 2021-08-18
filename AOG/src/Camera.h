@@ -15,7 +15,9 @@ enum class CameraMovement {
 	FORWARD,
 	BACKWARD,
 	LEFT,
-	RIGHT
+	RIGHT,
+	UP,
+	DOWN
 };
 
 class Camera
@@ -65,6 +67,12 @@ public:
 				break;
 			case CameraMovement::RIGHT:
 				m_Position += m_Right * velocity;
+				break;
+			case CameraMovement::UP:
+				m_Position += m_Up * velocity;
+				break;
+			case CameraMovement::DOWN:
+				m_Position -= m_Up * velocity;
 				break;
 		}
 	}
