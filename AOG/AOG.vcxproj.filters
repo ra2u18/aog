@@ -64,5 +64,11 @@
     <Image Include="assets\textures\wood.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\textures\container_steel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\glowstone.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

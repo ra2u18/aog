@@ -179,6 +179,8 @@
   <ItemGroup>
     <Image Include="assets\textures\awesomeface.png" />
     <Image Include="assets\textures\container.jpg" />
+    <Image Include="assets\textures\container_steel.png" />
+    <Image Include="assets\textures\glowstone.png" />
     <Image Include="assets\textures\wood.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -110,6 +110,7 @@ public:
 	// Getters and Setters
 	const float GetZoom() const { return m_Zoom; }
 	const glm::vec3& GetPosition() const { return m_Position; }
+	const glm::vec3& GetFront() const { return m_Front; }
 
 private:
 	void updateCameraVectors() {
